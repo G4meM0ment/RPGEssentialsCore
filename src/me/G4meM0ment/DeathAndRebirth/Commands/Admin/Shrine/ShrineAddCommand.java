@@ -17,7 +17,7 @@ import com.sk89q.worldedit.bukkit.selections.Selection;
 		pattern = "addShrine",
 		usage = "/dar addShrine (<name>)",
 		desc = "Adds a new shrine, for the given worldedit selection",
-		permission = "adrundaalgods.admin"
+		permission = "dar.admin"
 	)
 public class ShrineAddCommand implements Command {
 	@Override

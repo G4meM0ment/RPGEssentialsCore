@@ -31,8 +31,7 @@ public class PowerHandler {
 	
 	private static ConcurrentHashMap<Player, ConcurrentHashMap<String, Double>> playerPowers = new ConcurrentHashMap<Player, ConcurrentHashMap<String, Double>>();
 	
-	public PowerHandler(RPGEssentials plugin) 
-	{
+	public PowerHandler(RPGEssentials plugin) {
 		this.plugin = plugin;
 		subplugin = new RPGItem();
 		itemConfig = new ItemConfig();
@@ -42,8 +41,7 @@ public class PowerHandler {
 		iH = new InvisibilityHandler();
 		start();
 	}
-	public PowerHandler(CustomItemHandler ciH) 
-	{
+	public PowerHandler(CustomItemHandler ciH) {
 		subplugin = new RPGItem();
 		itemConfig = new ItemConfig();
 		lh = new ListHandler();
@@ -51,8 +49,7 @@ public class PowerHandler {
 		customItemHandler = ciH;
 		iH = new InvisibilityHandler();
 	}
-	public PowerHandler() 
-	{
+	public PowerHandler() {
 		subplugin = new RPGItem();
 		itemConfig = new ItemConfig();
 		lh = new ListHandler();
@@ -61,17 +58,14 @@ public class PowerHandler {
 		iH = new InvisibilityHandler();
 	}
 	
-	public ConcurrentHashMap<Player, ConcurrentHashMap<String, Double>> getPlayerPowers() 
-	{
+	public ConcurrentHashMap<Player, ConcurrentHashMap<String, Double>> getPlayerPowers() {
 		return playerPowers;
 	}
-	public ConcurrentHashMap<String, Double> getPlayersPowers(Player p)
-	{
+	public ConcurrentHashMap<String, Double> getPlayersPowers(Player p) {
 		return getPlayerPowers().get(p);
 	}
 	
-	public boolean hasPower(Player p, String effectName) 
-	{
+	public boolean hasPower(Player p, String effectName) {
 		if(p == null || effectName == null || effectName.isEmpty()) return false;
 		if(!getPlayerPowers().containsKey(p)) return false;
 		ConcurrentHashMap<String, Double> effects = getPlayersPowers(p);
@@ -97,22 +91,18 @@ public class PowerHandler {
 		}
 		return false;
 	}*/
-	public List<String> getItemPowers(CustomItem i)
-	{
+	public List<String> getItemPowers(CustomItem i) {
 		List<String> powers = new ArrayList<String>();
-		for(String s : lh.getPowers())
-		{
+		for(String s : lh.getPowers()) {
 			if(itemConfig.getConfig(itemConfig.getFile(i.getDispName())).getInt("powers."+s) >= 0)
 				powers.add(s);
 		}
 		return powers;
 	}
 	
-	private void applyPowers(Player p)
-	{
+	private void applyPowers(Player p) {
 		ConcurrentHashMap<String, Double> powers = getPlayerPowers().get(p);
-		for(String s : powers.keySet())
-		{
+		for(String s : powers.keySet()) {
 			if(s.equals("speed")) {
 				if(/*p.getWalkSpeed()*/0.2F+powers.get(s) <= 1)
 					p.setWalkSpeed((float) (/*p.getWalkSpeed()*/0.2F+powers.get(s)));
@@ -137,20 +127,17 @@ public class PowerHandler {
 		}
 	}
 	
-	private void removeEmptyPowers(Player p)
-	{
+	private void removeEmptyPowers(Player p) {
 		if(p == null) return;
 		if(!getPlayerPowers().containsKey(p)) return;
-		for(String s : getPlayersPowers(p).keySet())
-		{
+		for(String s : getPlayersPowers(p).keySet()) {
 			if(!getPlayersPowers(p).containsKey(s)) continue;
 			if(getPlayersPowers(p).get(s) <= 0)
 				getPlayersPowers(p).keySet().remove(s);
 		}
 	}
 	
-	private void removeAppliedPowers(Player p)
-	{
+	private void removeAppliedPowers(Player p) {
 		if(!hasPower(p, "speed"))
 			p.setWalkSpeed(0.2F);
 		if(iH.isHiden(p) && !hasPower(p, "invisibility"))
@@ -159,30 +146,24 @@ public class PowerHandler {
 			p.removePotionEffect(PotionEffectType.NIGHT_VISION);
 	}
 	
-	private void start() 
-	{
-		plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable()
-		{
+	private void start() {
+		plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 		    @Override
-		    public void run() 
-		    {
-		    	for(Player p : Bukkit.getOnlinePlayers())
-		    	{
+		    public void run() {
+		    	for(Player p : Bukkit.getOnlinePlayers()) {
 		    		/*
 		    		 * 
 		    		 * TODO check if power is active or passive
 		    		 * 
 		    		 */
 		    		ConcurrentHashMap<String, Double> powers = new ConcurrentHashMap<String, Double>();
-		    		for(ItemStack i : p.getInventory().getContents())
-		    		{
+		    		for(ItemStack i : p.getInventory().getContents()) {
 		    			if(!itemHandler.isCustomItem(i)) continue;
 	    				
 		    			CustomItem cItem = customItemHandler.getCustomItem(i);
 		    			if(cItem == null) return;
 		    			
-		    			if(i.equals(p.getItemInHand()) || cItem.isPassive()/* && itemHasPower(customItemHandler.getCustomItem(p.getItemInHand()))*/)
-		    			{	    				
+		    			if(i.equals(p.getItemInHand()) || cItem.isPassive()/* && itemHasPower(customItemHandler.getCustomItem(p.getItemInHand()))*/) {	    				
 		    				/*
 		    				 * removed due durability was disabled
 		    				 */
@@ -195,8 +176,7 @@ public class PowerHandler {
 	    							continue;
 	    					}*/
 		    			
-		    				for(String power : cItem.getPowers().keySet())
-		    				{
+		    				for(String power : cItem.getPowers().keySet()) {
 		    					if(powers.containsKey(power))
 		    						powers.put(power, powers.get(power)+cItem.getPowers().get(power));
 		    					else
@@ -205,10 +185,8 @@ public class PowerHandler {
 		    			}
 		    		}
 		    		
-		    		for(ItemStack i : p.getInventory().getArmorContents())
-		    		{
-		    			if(itemHandler.isCustomItem(i)/* && itemHasPower(customItemHandler.getCustomItem(i))*/)
-		    			{
+		    		for(ItemStack i : p.getInventory().getArmorContents()) {
+		    			if(itemHandler.isCustomItem(i)/* && itemHasPower(customItemHandler.getCustomItem(i))*/) {
 		    				CustomItem cItem = customItemHandler.getCustomItem(i);
 		    				if(cItem == null) continue;
 	    					if(cItem.getPowers() == null) continue;
@@ -223,8 +201,7 @@ public class PowerHandler {
 	    							continue;
 	    					}*/
 		    				
-		    				for(String power : cItem.getPowers().keySet())
-		    				{
+		    				for(String power : cItem.getPowers().keySet()) {
 			    				if(powers.containsKey(power))
 			    					powers.put(power, powers.get(power)+cItem.getPowers().get(power));
 			    				else

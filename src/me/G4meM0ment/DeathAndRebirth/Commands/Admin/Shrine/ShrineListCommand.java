@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 		pattern = "listShrines",
 		usage = "/dar listShrines",
 		desc = "List all shrines of the given world",
-		permission = "adrundaalgods.admin"
+		permission = "dar.admin"
 	)
 public class ShrineListCommand implements Command {
 	@Override
