@@ -113,28 +113,26 @@ public class PowerHandler {
 		ConcurrentHashMap<String, Double> powers = getPlayerPowers().get(p);
 		for(String s : powers.keySet())
 		{
-			switch(s)
-			{
-			case "speed":
+			if(s.equals("speed")) {
 				if(/*p.getWalkSpeed()*/0.2F+powers.get(s) <= 1)
 					p.setWalkSpeed((float) (/*p.getWalkSpeed()*/0.2F+powers.get(s)));
 				else if(p.getWalkSpeed()+powers.get(s) < 0)
 					p.setWalkSpeed(0.0F);
 				else
 					p.setWalkSpeed(1.0F);
-				break;
-			/*case "jump":
-				SpoutManager.getPlayer(p).setJumpingMultiplier(SpoutManager.getPlayer(p).getJumpingMultiplier()+powers.get(s));
-				break; */
-			case "invisibility":
+				continue;
+			}
+			if(s.equals("invisibility")) {
 				iH.hidePlayer(p);
-				break;
-			case "scuba":
+				continue;
+			}
+			if(s.equals("scuba")) {
 				p.setRemainingAir(p.getMaximumAir());
-				break;
-			case "nightvision":
+				continue;
+			}
+			if(s.equals("nightvision")) {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, powers.get(s).intValue()));
-                break;
+                continue;
 			}
 		}
 	}
