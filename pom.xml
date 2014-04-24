@@ -92,9 +92,18 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src</sourceDirectory>
+
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>resources</directory>
+                <targetPath>.</targetPath>
+            </resource>
+            <resource>
+                <directory>configurations</directory>
+            </resource>
+            <resource>
+                <directory>messages</directory>
             </resource>
         </resources>
 
@@ -109,5 +118,5 @@
                 </configuration>
             </plugin>
         </plugins>
-  </build>
+    </build>
 </project>
