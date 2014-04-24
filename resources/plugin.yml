@@ -1,0 +1,39 @@
+name: RPGEssentials
+main: me.G4meM0ment.RPGEssentials.RPGEssentials
+version: 0.00.001
+Author: [G4meM0ment, Eatingyou]
+depend: [Vault, WorldEdit]
+softdepend: [WorldGuard, MyWorlds, Heroes, Citizens]
+commands:
+    ge:
+        aliases: [ge]
+        description: Command for the main plugin
+        usage: /ge [reload]
+    rpgitem:
+        aliases: [rpgitem]
+        description: Main command for RPGItem
+        usage: /rpgitem help
+    ri:
+        aliases: [ri]
+        description: Main command for RPGItem
+        usage: /ri help
+    upp:
+        aliases: [upp]
+        description: Main command for UnnamedPortalPlugin
+        usage: /upp help
+    ib:
+        aliases: [ib]
+        description: Inventory backup command
+        usage: /ib <player> <file number>
+    dar:
+        aliases: [dar]
+        description: Death and Rebirth main command
+        usage: /dar reload (config|data)|save (config|data)|addShrine|removeShrine|setShrineSpawn
+    grave:
+        aliases: [grave]
+        description: Shows the location of your grave
+        usage: /grave
+    chaintrain:
+        aliases: [chaintrain]
+        description: Chaintrain main command
+        usage: /chaintrain reload|save

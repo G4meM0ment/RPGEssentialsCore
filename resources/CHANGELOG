@@ -1,0 +1,29 @@
+##### CHANGELOG #####
++ added feature
+- removed feature
+! warning
+* fixed
+
+Version: 0.00.001 #0001
+    + RPGItem
+    	+ Items with special description, damage protection & powers
+    	+ Heroes support (damage added upon class specific dmg)
+    	+ converter to convert old rpg items into new ones
+    	+ convert command
+    	+ permissions
+    	! enchantments need to have the same name as they have in bukkit, view bukkit docu for names
+    + UnamedPortalPlugin
+    	+ add portals (also with worldedit)
+    	+ set portal destination
+    	+ woosh effect
+    	+ portal permissions
+    	+ portal cooldown
+    + DeathAndRebirth
+    	+ Core features from old DaR
+    	+ rewritten code
+    + Chaintrain
+     	+ rewritten core features from old chaintrain
+    + InventoryBackup
+    	+ list backups made for a player
+    	+ restore inventory for a player (/ib <player> (<id of backup to restore>))
+    
