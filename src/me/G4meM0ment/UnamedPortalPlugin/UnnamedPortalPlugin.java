@@ -31,8 +31,7 @@ public class UnnamedPortalPlugin {
 	private static Logger logger;
 	private static boolean isEnabled = false;
 
-	public UnnamedPortalPlugin(RPGEssentials plugin) 
-	{
+	public UnnamedPortalPlugin(RPGEssentials plugin) {
 		this.plugin = plugin;
 		plistener = new PListener(plugin);
 		
@@ -45,13 +44,15 @@ public class UnnamedPortalPlugin {
 		portalData = new PortalData(this);
 		ph = new PortalHandler(this);
 	}
-	public UnnamedPortalPlugin() 
-	{
+	public UnnamedPortalPlugin() {
 		portalData = new PortalData(this);
 		ph = new PortalHandler(this);
 	}
 
 	public boolean onEnable() {
+		if(plugin.getWorldEdit() == null)
+			return false;
+		
 		//creating config or loading
 		reloadConfig();
 		saveConfig();

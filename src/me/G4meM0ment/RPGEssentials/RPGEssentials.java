@@ -81,8 +81,10 @@ public class RPGEssentials extends JavaPlugin {
 			
 			if(uppEnabled)
 				getLogger().info("UnnamedPortalPlugin enabled!");
-			else
-				getLogger().info("UnnamedPortalPlugin couldn't be enabled!");
+			else {
+				dar = null;
+				getLogger().info("UnnamedPortalPlugin couldn't be enabled (dependency missing (worldedit)?)!");
+			}
 		} else
 			getLogger().info("UnnamedPortalPlugin found, but disabled in config!");
 
@@ -108,8 +110,10 @@ public class RPGEssentials extends JavaPlugin {
 							
 			if(darEnabled)
 				getLogger().info("DeathAndRebirth enabled!");
-			else
-				getLogger().info("DeathAndRebirth couldn't be enabled!");
+			else {
+				dar = null;
+				getLogger().info("DeathAndRebirth couldn't be enabled (dependency missing (worldedit)?)!");
+			}
 		} 
 		else
 			getLogger().info("DeathAndRebirth found, but disabled in config!");

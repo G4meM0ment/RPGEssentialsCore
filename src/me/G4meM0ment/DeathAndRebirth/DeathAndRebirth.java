@@ -55,8 +55,7 @@ public class DeathAndRebirth {
 	 * RPGEssentials
 	 * @param plugin
 	 */
-	public DeathAndRebirth(RPGEssentials plugin) 
-	{
+	public DeathAndRebirth(RPGEssentials plugin) {
 		this.plugin = plugin;
 		pListener = new PListener(this);
 		bListener = new BListener();
@@ -89,8 +88,7 @@ public class DeathAndRebirth {
 		gH = new GhostHandler(this);
 		graveH = new GraveHandler();
 	}
-	public DeathAndRebirth() 
-	{
+	public DeathAndRebirth() {
 		plugin = (RPGEssentials) Bukkit.getPluginManager().getPlugin("RPGEssentials");
 		manager = new DARManager(plugin);
 		dropData = new DropData(this);
@@ -107,6 +105,9 @@ public class DeathAndRebirth {
 	 * @return
 	 */
 	public boolean onEnable() {
+		if(plugin.getWorldEdit() == null)
+			return false;
+		
 		//creating config or loading
 		reloadConfig();
 		saveConfig();
